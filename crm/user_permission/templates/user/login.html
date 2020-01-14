@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block name_page %}Логин{% endblock %}
+{% block css %}
+<style>
+	.main{
+		background: white;
+		border-radius: 10px;
+	}
+
+
+
+	.login_link{
+		color: #4e2a84 !important;
+	}
+
+	h1,label{
+		color: #401f68;
+	}
+
+	.form-check-label{
+		color: #495057;
+	}
+
+</style>
+{% endblock %}
+{% block nav %}
+{% endblock %}
+{% block main %}
+
+<div class="container main mt-5 pl-4 pr-4 ">
+	<div class="row pb-3">
+		<div class="col-12">
+
+			{% if form.non_field_errors %}
+			<div class="alert alert-danger" role="alert">
+				{{ form.non_field_errors }}
+			</div>
+
+			{% endif %}
+		</div>
+		<div class="col-lg-6 col-12 offset-lg-3 ">
+			{% if user.is_authenticated %}
+			<p class='text-center h3'>Что такое, {{ user.name }}? Вы же уже авторизорваны. 
+				Впрочем, всегда можно <a href="{% url 'logout' %}">выйти</a>.<br/><br/></p>
+				{% else %}
+				<form method="post" action="">
+					{% for field in form %}
+					<div class="form-row">
+						{% csrf_token %}
+						<div class="form-group col-12">
+							{{ field | as_crispy_field }}
+						</div>
+						{% if field.help_text %}<div class="clearfix col-12">{{ field.help_text }}</div>{% endif %}
+						{% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
+					</div>
+					{% endfor %}
+				
+					<div class="form-row  justify-content-end">
+						<input type="submit" value="Войти" class="btn btn-primary ">
+					</div>			
+				</form>
+			</div>
+				{% endif %}
+		</div>
+
+
+
+
+
+	</div>
+
+	{% endblock %}

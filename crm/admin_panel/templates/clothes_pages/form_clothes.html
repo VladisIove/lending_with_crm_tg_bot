@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block name_page %}Создание одежды{% endblock %}
+{% block main %}
+<div class="container">  
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col-md-6">
+          {{ form.name | as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+          {{ form.description | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.type_clothes | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.old_price | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.price | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.count | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.size | as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.color | as_crispy_field }}
+        </div>
+      </div>
+      <div class="text-right">
+        {{ form.img | as_crispy_field }}
+      </div>
+      <div class="form-row  justify-content-end">
+        {{ form.enabled | as_crispy_field }}
+        <input type="submit" value="Сохранить" class="btn btn-primary ">
+      </div>	
+    </form>
+</div>
+
+{% endblock %}

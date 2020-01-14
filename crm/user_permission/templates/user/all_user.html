@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+    <ul class="list-group list-group-flush"></ul>
+    {% for user in users %}
+    
+        <li class="list-group-item"><a href="{% url 'user_permission:update_user' user.pk %}">Имя: {{user.name}},
+                                     доступ: {% ifequal user.permission_user 1 %}
+                                     Менеджер
+                                     {%endifequal %}
+                                     {% ifequal user.permission_user 2 %}
+                                     Поставщик
+                                     {%endifequal %}
+                                     {% ifequal user.permission_user 3 %}
+                                    Админ
+                                     {%endifequal %}</a>
+
+                                        <a href="{% url 'user_permission:remove_user' user.pk %}" type="button" class="close" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </a>
+        
+
+                                    </li>  
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

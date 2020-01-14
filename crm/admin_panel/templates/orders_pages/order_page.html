@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block name_page %}
+Orders list
+{% endblock %}
+{% block main %}
+    <div class="accordion" id="accordionOrder">
+        <div class="card">
+            {% for order in orders %}
+                <div class="card-header" id="heading{{order.id}}">
+                    <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{order.id}}" aria-expanded="true" aria-controls="collapse{{order.id}}">
+                        {{ order.id }} {{ order.datetime }}
+                    </button>
+                    </h2>
+                </div>
+            
+                <div id="collapse{{order.id}}" class="collapse show" aria-labelledby="heading{{order.id}}" data-parent="#accordionOrder">
+                    <div class="card-body">
+                        {% if order.phone %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.name %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.surname %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.email %} <p class="card-text"> {{ order.email }}</p> {% endif %}                       
+                        {% if order.city %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.address_novoi_poshti %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.datetime %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.email %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        <p class="card-text">{% if order.complete %}Заказ оформлен до конца{% else %} Заказ не отправлен {% endif %}</p>
+
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">id одежды</th>
+                                <th scope="col">Название одежды</th>
+                                <th scope="col">Цена одежды на момент заказа</th>
+                                <th scope="col">Размер одежды</th>
+                                <th scope="col">Цвет одежды</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for chooce_clothes in order.chooce_clothes.all %}
+                                  <tr>
+                                    <th scope="row">{{chooce_clothes.clothes.id}}</th>
+                                    <td>{{chooce_clothes.clothes.name}}</td>
+                                    <td>{{chooce_clothes.price}}</td>
+                                    <td>{{chooce_clothes.clothes.size}}</td>
+                                    <td>{{chooce_clothes.clothes.color}}</td>
+                                  </tr>
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            {% endfor  %}
+       
+        </div>
+    </div>
+
+{% endblock %}

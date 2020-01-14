@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block main %}
+    {% for clothesview in clothes_views %}
+    <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ MEDIA_ROOT }}{{ clothesview.img.url}}" class="card-img img-thumbnail" alt="...">
+        </div>
+    <div class="card mb-3 col-md-8">
+        <div class="card-body">
+            <a href="{% url 'admin_panel:remove_clothes' clothesview.pk %}" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </a>
+          <h5 class="card-title">{{clothesview.name}}</h5>
+          <p class="card-text">{{clothesview.description}}</p>
+          <p class="card-text">{% if clothesview.enabled %}Товар доступен на сайте{%else%}На сайте товара нету{%endif%}</p>
+          <p class="cartd-text"><small class="text-muted">
+            {% if clothesview.type_clothes == 1%}
+            Футболка
+            {% endif %}
+            {% if clothesview.type_clothes == 2%}
+            Толстовка
+            {% endif %}
+            {% if clothesview.type_clothes == 3%}
+            Майка
+            {% endif %}
+          </small></p>
+          <p class="card-text">
+              {% if clothesview.old_price %}
+                Цена без скидки: {{clothesview.old_price}}
+              {% endif %}
+              Цена: {{clothesview.price}}
+          </p>
+          <p class="card-text">
+              РАзмеры:
+              {% for size in clothesview.size.all %}
+                {{size}}
+              {% endfor %}
+          </p>
+          <p class="card-text">
+              Цвета:
+            {% for color in clothesview.color.all %}
+              {{color}}
+            {% endfor %}
+        </p>
+        <a href="{% url 'admin_panel:update_clothes' clothesview.pk %}">Изменить</a>
+        </div>
+    </div>
+    </div>
+    {%endfor%}
+{% endblock %}
