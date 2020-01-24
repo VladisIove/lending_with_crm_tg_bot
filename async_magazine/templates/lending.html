@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ namesite }}</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="../static/css/nav.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/carousel.css">
+    <link rel="stylesheet" href="../static/css/footer.css">    
+    <link rel="stylesheet" href="../static/css/cart.css">
+</head>
+<body>
+<nav>
+    <div class="logo"><h4>Undershop.ua</h4></div>
+    <ul class="nav-links">
+        <li><a href="#">Футболки</a></li>
+        <li><a href="#">Толстовки</a></li>
+        <li><a href="#">Майки</a></li>
+        <li><a id="cartBtn">Корзина</a></li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+</nav>   
+<header>
+    <div class="img-overlay"></div>
+    <div class="header-text">
+        <h1>До конца скидки осталось:</h4>
+        <hr>
+        <p1 id="timer"></p1>
+    </div>
+</header>  
+<main>
+    <h1 class="catalog">Каталог</h1>
+    <div class="main">
+        <div class="product">   
+            <div class="container">
+                <div id="card" class="card">
+                    <div class="front">
+                        <img class="cart-image" src="http://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="">
+                    </div>
+                    <div class="back">
+                        <form action="" method="POST" class="fast_form">
+                            <input type="text" class="input" name="name" placeholder="Имя">
+                            <input type="number" class="input" name="phone" placeholder="Номер телефона">
+                            <span class="">
+                            <a class="neon neon-fast-form">                        <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>Оформить заказ</a>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="options">
+                <h1 class="name">Название</h1>
+                <p class="price">
+                    <span class="old_price">1998</span>
+                    <span class="new_price">1000 uah</span>
+                </p>
+                <p class="description">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
+                <p class="count">Осталось: 3</p>
+                <p class="size">Размеры: s, l, m , xl, xll</p>
+                <p class="color">Цвет: чорынй, розовый, зеленый</p>
+                <span>
+                    <a  onclick="flipCardFunction('card')" class="neon neon-fast">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Быстрый заказ
+                    </a>
+    
+                    <a  onclick="flipCardFunction('card')" class="neon add-cart">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                       В корзину
+                    </a>
+                    </span>
+            </div>
+        </div>
+
+
+    </div>
+
+</main>
+<section >
+    <div class="carousel-container">
+        <i class="fas fa-arrow-left" id="prevBtn"></i>
+        <i class="fas fa-arrow-right" id="nextBtn"></i>
+        <div class="carousel-slide">
+            <img id="lastClone" src="https://www.soluciones506.com/img/parallax/arbol.jpg" alt="">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" style="width: 1838px">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/futbolkam.jpg" style="width: 1838px" alt="">
+            <img src="https://www.westside.social/wp-content/uploads/2016/10/clients-parallax-img-4.jpg" alt="">
+            <img src="http://www.i-cloudius.com/wp-content/uploads/2016/06/parallax-image.jpg" alt="">
+            <img src="https://www.soluciones506.com/img/parallax/arbol.jpg" alt="">
+            <img id="firstClone" src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" style="width: 1838px" alt="">
+        </div>
+    </div>
+</section>
+
+<section class="cart">
+    <h1>Shopping Cart</h1>
+
+    <div class="shopping-cart">
+    
+      <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product</label>
+        <label class="product-price">Price</label>
+        <label class="product-quantity">Quantity</label>
+        <label class="product-quantity">Размер</label>
+        <label class="product-quantity">Цвет</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price">Total</label>
+      </div>
+    
+      <div class="product">
+        <div class="product-image">
+          <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+        </div>
+        <div class="product-details">
+          <div class="product-title">Dingo Dog Bones</div>
+          <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+        </div>
+        <div class="product-price">12.99</div>
+        <div class="product-quantity">
+          <input type="number" value="2" min="1">
+        </div>
+        <div class="product-quantity">
+            <input type="color">
+          </div>
+          <div class="product-quantity">
+            <input type="size">
+          </div>
+        <div class="product-removal">
+          <button class="remove-product">
+            Remove
+          </button>
+        </div>
+        <div class="product-line-price">25.98</div>
+      </div>
+    
+      <div class="product">
+        <div class="product-image">
+          <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
+        </div>
+        <div class="product-details">
+          <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
+          <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
+        </div>
+        <div class="product-price">45.99</div>
+        <div class="product-quantity">
+          <input type="number" value="1" min="1">
+        </div>
+        <div class="product-removal">
+          <button class="remove-product">
+            Remove
+          </button>
+        </div>
+        <div class="product-line-price">45.99</div>
+      </div>
+    
+      <div class="totals">
+        <div class="totals-item totals-item-total">
+          <label>Total</label>
+          <div class="totals-value" id="cart-total">00.00</div>
+        </div>
+      </div>
+          
+          <button class="checkout">Checkout</button>
+    
+    </div>
+</section>
+
+<footer>
+    <div class="inner-footer">
+        <div class="footer-items about">
+            <h1>О нас</h1>
+            <p>Всевышний бит давал нам идеи для этих вещей. Эта одежда даёт +10 к стилю и +15 к зависти окружающих.</p>   
+        </div>
+        <div class="footer-items contacs">
+            <h1>Контакты:</h1>
+            <div class="border"></div>
+           <ul>
+               <li><i class="fa fa-phone" aria-hidden="true"></i> *номер телефона*</li>
+               <li><i class="fa fa-map-marker" aria-hidden="true"> Украина, г.Киев</i></li>
+               <li><i class="fa fa-envelope" aria-hidden="true"> dddd@gmail.com</i></li>
+           </ul>
+        </div>
+        <div class="social-media footer-items">
+            <h1>Наши соц. сети:</h1>
+            <div class="border"></div>
+            <div class="media-links">
+                <a href=""><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href=""><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href=""><i class="fab fa-telegram"></i></div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../static/scripts/nav.js" type="text/javascript" ></script>
+<script src="../static/scripts/header.js" type="text/javascript"></script>
+<script src="../static/scripts/main.js" type="text/javascript"></script>
+<script src="../static/scripts/carousel.js"></script>
+<script src="../static/scripts/cart.js" async></script>
+</body>
+</html>

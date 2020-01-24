@@ -57,6 +57,8 @@ class ClothesView(models.Model):
     size = models.ManyToManyField(SizeClothes,related_name='clothes')
     color = models.ManyToManyField(ColorClothes,related_name='clothes')
 
+    def __str__(self):
+        return 'ID: {}, name: {}'.format(self.id, self.name)
 class ChooceClothes(models.Model):
     class Meta:
         db_table='chooces_clothes'
@@ -91,4 +93,6 @@ class Order(models.Model):
     price = models.FloatField(validators=[MinValueValidator(0),],null=False,blank=False, default=0)
     type_order = models.PositiveSmallIntegerField(choices=CHOICES_TYPE_ORDER, default=TYPE_ORDER.FAST)
 
+    def __str__(self):
+        return 'ID: {}, datetime: {}'.format(self.id, self.datetime)
 
