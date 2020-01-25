@@ -42,7 +42,8 @@
 <main>
     <h1 class="catalog">Каталог</h1>
     <div class="main">
-        <div class="product">   
+      {%for  cl in clothes %}
+        <div class="product-cart">   
             <div class="container">
                 <div id="card" class="card">
                     <div class="front">
@@ -64,15 +65,17 @@
             </div>
             
             <div class="options">
-                <h1 class="name">Название</h1>
+                <h1 class="name">cl.name</h1>
                 <p class="price">
-                    <span class="old_price">1998</span>
-                    <span class="new_price">1000 uah</span>
+                  {% if cl.old_price %}
+                    <span class="old_price">{{cl.old_price}}</span>
+                    {% endif %}
+                    <span class="new_price">{{cl.price}} uah</span>
                 </p>
-                <p class="description">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
-                <p class="count">Осталось: 3</p>
-                <p class="size">Размеры: s, l, m , xl, xll</p>
-                <p class="color">Цвет: чорынй, розовый, зеленый</p>
+                <p class="description">{{cl.description}}</p>
+                <p class="count">Осталось: {{cl.count}}</p>
+                <p class="size">Размеры: {{cl.size}} </p>
+                <p class="color">Цвет: {% for color in cl.chooceclothes %} {{color.id}}{%endfor%}</p>
                 <span>
                     <a  onclick="flipCardFunction('card')" class="neon neon-fast">
                         <span></span>
@@ -93,7 +96,7 @@
             </div>
         </div>
 
-
+      {%endfor%}
     </div>
 
 </main>

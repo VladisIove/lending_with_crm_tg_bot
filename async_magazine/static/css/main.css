@@ -5,7 +5,7 @@
     justify-content: space-around;
     font-family: 'Russo One', sans-serif !important;
 }
-.product{
+.product-cart{
     padding: 2%;
 }
 .catalog{
@@ -15,7 +15,7 @@
     text-align: center;
     font-family: 'Russo One', sans-serif !important;
 }
-.main .product{
+.main .product-cart{
     width: 500px;
     height: auto;
 

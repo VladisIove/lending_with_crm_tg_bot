@@ -2,5 +2,5 @@ postgres:
   database: test_database
   user: test_database
   password: test_database
-  host: localhost
+  host: 127.0.0.1
   port: 5432
