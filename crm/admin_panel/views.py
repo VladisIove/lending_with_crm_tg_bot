@@ -64,6 +64,7 @@ class AllClothesView(ListView, LoginRequiredMixin):
 class AllOrderView(ListView, LoginRequiredMixin):
     model = Order
     template_name = 'orders_pages/order_page.html'
+    context_object_name ='order_view'
 
     def get_queryset(self,*args,**kwargs):
         qs = super().get_queryset()

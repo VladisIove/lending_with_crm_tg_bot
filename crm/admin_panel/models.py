@@ -64,9 +64,9 @@ class ChooceClothes(models.Model):
         db_table='chooces_clothes'
 
     datetime = models.DateTimeField(auto_now_add=True, auto_now=False)
-    clothes = models.OneToOneField(ClothesView,related_name='chooce_clothes',null=True, on_delete=models.SET_NULL)
+    clothes = models.ForeignKey(ClothesView,on_delete=models.CASCADE, related_name='chooce_clothes', null=True)
     price = models.FloatField(validators=[MinValueValidator(0),],null=False,blank=False)
-
+    
 class Order(models.Model):
     class Meta:
         db_table='orders'
@@ -81,15 +81,15 @@ class Order(models.Model):
         (TYPE_ORDER.FULL, 'Полный заказ'),
     )
     
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=20)
     name = models.CharField(max_length=120)
-    surname = models.CharField(max_length=120)
-    city = models.CharField(max_length=120)
-    address_novoi_poshti = models.CharField(max_length=500)
+    surname = models.CharField(max_length=120,null=True, blank=True)
+    city = models.CharField(max_length=120, null=True, blank=True)
+    address_novoi_poshti = models.CharField(max_length=500, null=True, blank=True)
     datetime = models.DateTimeField(auto_now_add=True, auto_now=False)
     chooce_clothes = models.ManyToManyField(ChooceClothes, related_name='order')
-    complete = models.BooleanField()
+    complete = models.BooleanField(default=False,null=True, blank=True)
     price = models.FloatField(validators=[MinValueValidator(0),],null=False,blank=False, default=0)
     type_order = models.PositiveSmallIntegerField(choices=CHOICES_TYPE_ORDER, default=TYPE_ORDER.FAST)
 

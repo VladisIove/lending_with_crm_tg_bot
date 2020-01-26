@@ -5,25 +5,25 @@ Orders list
 {% block main %}
     <div class="accordion" id="accordionOrder">
         <div class="card">
-            {% for order in orders %}
+            {% for order in order_view %}
                 <div class="card-header" id="heading{{order.id}}">
                     <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{order.id}}" aria-expanded="true" aria-controls="collapse{{order.id}}">
-                        {{ order.id }} {{ order.datetime }}
+                        ID заказа: {{ order.id }}, время создания: {{ order.datetime }}
                     </button>
                     </h2>
                 </div>
             
-                <div id="collapse{{order.id}}" class="collapse show" aria-labelledby="heading{{order.id}}" data-parent="#accordionOrder">
+                <div id="collapse{{order.id}}" class="collapse" aria-labelledby="heading{{order.id}}" data-parent="#accordionOrder">
                     <div class="card-body">
-                        {% if order.phone %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.name %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.surname %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.email %} <p class="card-text"> {{ order.email }}</p> {% endif %}                       
-                        {% if order.city %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.address_novoi_poshti %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.datetime %} <p class="card-text"> {{ order.email }}</p> {% endif %}
-                        {% if order.email %} <p class="card-text"> {{ order.email }}</p> {% endif %}
+                        {% if order.phone != None %} <p class="card-text"> {{ order.phone }}</p> {% endif %}
+                        {% if order.name %} <p class="card-text"> {{ order.name }}</p> {% endif %}
+                        {% if order.surname != None %} <p class="card-text"> {{ order.surname }}</p> {% endif %}
+                        {% if order.email != None %} <p class="card-text"> {{ order.email }}</p> {% endif %}                       
+                        {% if order.city != None %} <p class="card-text"> {{ order.city }}</p> {% endif %}
+                        {% if order.address_novoi_poshti != None %} <p class="card-text"> {{ order.address_novoi_poshti }}</p> {% endif %}
+                        {% if order.datetime != None %} <p class="card-text"> {{ order.datetime }}</p> {% endif %}
+                        {% if order.email != None %} <p class="card-text"> {{ order.email }}</p> {% endif %}
                         <p class="card-text">{% if order.complete %}Заказ оформлен до конца{% else %} Заказ не отправлен {% endif %}</p>
 
                           <table class="table">
