@@ -1,5 +1,5 @@
 // New date
-var countDownDate = new Date("Jan 30, 2020 00:00:00").getTime()
+var countDownDate = new Date("Feb 28, 2020 00:00:00").getTime()
 // Update timer every one second
 let countDownFunction = setInterval(function(){
     let now = new Date().getTime();

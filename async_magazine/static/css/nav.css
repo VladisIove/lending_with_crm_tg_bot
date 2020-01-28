@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Russo One', sans-serif;
 }
+html { scroll-behavior: smooth; }
 body{
     background-color: #333f48;
     color: #d9e1e2
@@ -69,7 +70,7 @@ nav{
         right: 0px;
         height: 92vh;
         top: 8vh;
-        background-color: #5D4954;
+        background-color: #333f48;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -102,6 +103,19 @@ nav{
     }
 }
 
+@keyframes navLinkFadeDown{
+    from{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+    to{
+        opacity: 0;
+        transform: 50px;
+        transform: translateX(100%);
+    }
+}
+
 .toggle .line1{
     transform: rotate(-45deg) translate(-5px, 6px);
 }
@@ -110,4 +124,8 @@ nav{
 }
 .toggle .line3{
     transform: rotate(45deg) translate(-5px, -6px); 
+}
+
+.nav-links, .burger{
+    display: none;
 }

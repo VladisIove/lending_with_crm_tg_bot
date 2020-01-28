@@ -24,7 +24,7 @@ Base = declarative_base()
 meta = MetaData()
 
 
-clothes_views_color = Table('clothes_views_color', Base.metadata,
+clothes_views_size = Table('clothes_views_size', Base.metadata,
     Column('clothesview_id', Integer, ForeignKey('clothes_views.id', ondelete='CASCADE')),
     Column('sizeclothes_id', Integer, ForeignKey('sizes_clothes.id', ondelete='CASCADE')),
 )
@@ -45,7 +45,7 @@ class SizeClothes(Base):
         return '{}'.format(self.name_size)
 
 
-clothes_views_size = Table('clothes_views_size', Base.metadata,
+clothes_views_color = Table('clothes_views_color', Base.metadata,
     Column('clothesview_id', Integer, ForeignKey('clothes_views.id', ondelete='CASCADE')),
     Column('colorclothes_id', Integer, ForeignKey('colors_clothes.id', ondelete='CASCADE')),
 )
@@ -63,15 +63,16 @@ class ClothesView(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column( String(200), nullable=False)
-    name = Column( String(500), nullable=False)
+    description = Column( String(500), nullable=False)
     type_clothes = Column(Integer, nullable=False)
     enabled = Column(Boolean, default=True)
     old_price = Column(Float, nullable=False)
     price = Column(Float, nullable=False)
     count = Column(Integer, nullable=False)
     img = Column(String(500), nullable=False)
-    size = relationship('ClothesView', secondary=clothes_views_size)
-    color = relationship('ClothesView', secondary=clothes_views_color)
+    size = relationship('SizeClothes', secondary=clothes_views_size)
+    color = relationship('ColorClothes', secondary=clothes_views_color)
+    type_clothes = Column(Integer, nullable=False)
 
     def __str__(self):
         return 'ID: {}, name: {}, color: {}'.format(self.id, self.name, [x for x in self.color])
@@ -91,17 +92,17 @@ class Order(Base):
     __tablename__='orders'
 
     id = Column(Integer, primary_key=True)
-    phone = Column( String(200), nullable=False)
-    name = Column( String(200), nullable=False)
-    surname = Column( String(200), nullable=False)
-    city = Column( String(200), nullable=False)
-    address_novoi_poshti = Column( String(200), nullable=False)
+    phone = Column( String(200))
+    name = Column( String(200))
+    surname = Column( String(200))
+    city = Column( String(200))
+    address_novoi_poshti = Column( String(200))
     datetime = Column(DateTime, default=datetime.datetime.utcnow)
     chooce_clothes = relationship("ChooceClothes",
                     secondary=orders_chooce_clothes,
                     backref="orders")
-    price = Column(Float, nullable=False)
-    type_order = Column(Integer, nullable=False)
+    price = Column(Float)
+    type_order = Column(Integer)
 
     def __str__(self):
         return 'ID: {}, price: {}'.format(self.id, self.price)

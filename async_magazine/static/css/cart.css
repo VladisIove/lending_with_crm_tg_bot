@@ -8,7 +8,7 @@
 }
  .product-details {
 	 float: left;
-	 width: 37%;
+	 width: 17%;
 }
  .product-price {
 	 float: left;
@@ -51,7 +51,8 @@
 	 color: #aaa;
 }
  .shopping-cart {
-	 margin-top: -45px;
+	 margin: 0 auto;
+	 width: 95vw;
 }
 /* Column headers */
  .column-labels label {
@@ -196,3 +197,18 @@
 	}
 }
  
+.cart{
+	margin-top: 4%;
+}
+.order{
+	width: 99vw;
+	display: flex;
+	display: inline-flex; 
+	flex-wrap: wrap;
+	justify-content: space-around;
+	text-align: center;
+}
+.order input{
+	width: 40%;
+
+}

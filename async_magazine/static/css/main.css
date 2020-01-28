@@ -4,6 +4,7 @@
     align-content: space-between;
     justify-content: space-around;
     font-family: 'Russo One', sans-serif !important;
+    margin-bottom: 2%;
 }
 .product-cart{
     padding: 2%;
@@ -23,7 +24,7 @@
 
 
 .container {
-    width: 425px;
+    width: 500px;
     height: 325px;
     position: relative;
     perspective: 800px;
@@ -60,7 +61,7 @@
 }
 .cart-image{
     width: 100%;
-    height: auto;
+    height: 325px;
 }
 
 #options{
@@ -126,9 +127,10 @@
 }
 
 .neon-fast{
-  text-align: right;
   color: #d9e1e2;
   background: #d32d27;
+  margin-left: 26%;
+  margin-right: auto;
   box-shadow: 0 0 10px #d32d27, 0 0 40px #d32d27, 0 0 80px #d32d27;
 }
 
@@ -190,7 +192,7 @@ a:hover span:nth-child(4){
 .fast_form{
   position: absolute;
   width: 425px;
-  height: 375px;
+  height: 320px;
   margin: 0 auto;
   background-color: #d9e1e2;
   padding: 30px;
@@ -201,7 +203,7 @@ a:hover span:nth-child(4){
   justify-content: space-around;
 }
 
-.fast_form .input{
+.input{
   text-decoration: none;
   margin: 10px 0;
   background: transparent;
@@ -222,4 +224,16 @@ a:hover span:nth-child(4){
 
 ::-ms-input-placeholder{
   color: #d32d27;
+}
+
+.complete-message{
+  margin: 0 auto;
+    color: red;
+    position: absolute;
+    left: 14%;
+    top: 40%
+}
+
+.complete-message p {
+  width: 75%;
 }

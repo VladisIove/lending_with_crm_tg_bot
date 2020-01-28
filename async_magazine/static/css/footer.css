@@ -1,7 +1,8 @@
 footer{
     width: 100%;
-    background: #333f48;
+    background: black;
     display: block;
+    border-top: 1px solid #0c2340;
 }
 
 .inner-footer{
@@ -107,6 +108,10 @@ footer{
 
 @media screen and (max-width: 1085px){
     .footer-items{
-        width:100%
+        width:100%;
+    }
+
+    .contacs{
+        margin-left: 0%;
     }
 }

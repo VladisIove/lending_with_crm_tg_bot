@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ namesite }}</title>
+    <title>Undershop.ua</title>
     
     <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="../static/css/nav.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/carousel.css">
-    <link rel="stylesheet" href="../static/css/footer.css">    
-    <link rel="stylesheet" href="../static/css/cart.css">
+    <link rel="stylesheet" href="{{url( 'static', filename='css/nav.css')}}">
+    <link rel="stylesheet" href="{{url( 'static', filename='css/header.css')}}">
+    <link rel="stylesheet" href="{{url( 'static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url( 'static', filename='css/carousel.css')}}">
+    <link rel="stylesheet" href="{{url( 'static', filename='css/footer.css')}}">    
+    <link rel="stylesheet" href="{{url( 'static', filename='css/cart.css')}}">
+
+    <link href='chosen/chosen.min.css' rel='stylesheet' type='text/css'>
+    <script src='chosen/chosen.jquery.min.js' type='text/javascript'></script>
 </head>
 <body>
 <nav>
     <div class="logo"><h4>Undershop.ua</h4></div>
     <ul class="nav-links">
-        <li><a href="#">Футболки</a></li>
-        <li><a href="#">Толстовки</a></li>
-        <li><a href="#">Майки</a></li>
+        <li><a href="#tshirts">Футболки</a></li>
+        <li><a href="#hoodies">Толстовки</a></li>
+        <li><a href="#shirt">Майки</a></li>
         <li><a id="cartBtn">Корзина</a></li>
     </ul>
     <div class="burger">
@@ -42,22 +45,25 @@
 <main>
     <h1 class="catalog">Каталог</h1>
     <div class="main">
+      <span id="tshirts"></span>
       {%for  cl in clothes %}
+
         <div class="product-cart">   
             <div class="container">
-                <div id="card" class="card">
+                <div id="card-{{cl.id}}" class="card">
                     <div class="front">
-                        <img class="cart-image" src="http://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="">
+                        <img class="cart-image" id="img-{{cl.id}}" src="{{cl.img}}" alt="">
                     </div>
                     <div class="back">
                         <form action="" method="POST" class="fast_form">
-                            <input type="text" class="input" name="name" placeholder="Имя">
-                            <input type="number" class="input" name="phone" placeholder="Номер телефона">
-                            <span class="">
-                            <a class="neon neon-fast-form">                        <span></span>
+                            <input type="text" class="input" name="name-{{cl.id}}" placeholder="Имя">
+                            <input type="text" class="input" name="phone-{{cl.id}}" placeholder="Номер телефона">
+                            <a class="neon neon-fast-form" onclick="fastCartFunction('{{cl.id}}', '{{cl.price}}', )">               
                                 <span></span>
                                 <span></span>
-                                <span></span>Оформить заказ</a>
+                                <span></span>
+                                <span></span>Оформить заказ
+                            </a>
                             </span>
                         </form>
                     </div>
@@ -65,37 +71,29 @@
             </div>
             
             <div class="options">
-                <h1 class="name">cl.name</h1>
+                <h1 class="name" id="name-{{cl.id}}">{{cl.name}}</h1>
                 <p class="price">
                   {% if cl.old_price %}
                     <span class="old_price">{{cl.old_price}}</span>
                     {% endif %}
-                    <span class="new_price">{{cl.price}} uah</span>
+                    <span class="new_price" > <span id="price-{{cl.id}}">{{cl.price}}</span> uah</span>
                 </p>
                 <p class="description">{{cl.description}}</p>
                 <p class="count">Осталось: {{cl.count}}</p>
-                <p class="size">Размеры: {{cl.size}} </p>
-                <p class="color">Цвет: {% for color in cl.chooceclothes %} {{color.id}}{%endfor%}</p>
+                <p class="size" >Размеры: <span id="size-{{cl.id}}">{% for size in cl.size %}{{size.name_size}} {%endfor%}</span> </p>
+                <p class="color" >Цвет: <span id="color-{{cl.id}}">{% for color in cl.color %}{{color.name_color}} {%endfor%}</span> </p>
                 <span>
-                    <a  onclick="flipCardFunction('card')" class="neon neon-fast">
+                    <a  onclick="flipCardFunction('{{cl.id}}')" class="neon neon-fast">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Быстрый заказ
                     </a>
-    
-                    <a  onclick="flipCardFunction('card')" class="neon add-cart">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                       В корзину
-                    </a>
+  
                     </span>
             </div>
         </div>
-
       {%endfor%}
     </div>
 
@@ -105,96 +103,26 @@
         <i class="fas fa-arrow-left" id="prevBtn"></i>
         <i class="fas fa-arrow-right" id="nextBtn"></i>
         <div class="carousel-slide">
-            <img id="lastClone" src="https://www.soluciones506.com/img/parallax/arbol.jpg" alt="">
-            <img src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" style="width: 1838px">
-            <img src="https://maikasoft.com.ua/image/catalog/razmer/futbolkam.jpg" style="width: 1838px" alt="">
-            <img src="https://www.westside.social/wp-content/uploads/2016/10/clients-parallax-img-4.jpg" alt="">
-            <img src="http://www.i-cloudius.com/wp-content/uploads/2016/06/parallax-image.jpg" alt="">
-            <img src="https://www.soluciones506.com/img/parallax/arbol.jpg" alt="">
-            <img id="firstClone" src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" style="width: 1838px" alt="">
+            <img id="lastClone" src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" alt="">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/futbolkam.jpg"  alt="">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" alt="">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/futbolkam.jpg" alt="">
+            <img src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" alt="">
+            <img id="firstClone" src="https://maikasoft.com.ua/image/catalog/razmer/tolstovka_unisex.jpg" alt="">
         </div>
     </div>
 </section>
 
-<section class="cart">
-    <h1>Shopping Cart</h1>
-
-    <div class="shopping-cart">
-    
-      <div class="column-labels">
-        <label class="product-image">Image</label>
-        <label class="product-details">Product</label>
-        <label class="product-price">Price</label>
-        <label class="product-quantity">Quantity</label>
-        <label class="product-quantity">Размер</label>
-        <label class="product-quantity">Цвет</label>
-        <label class="product-removal">Remove</label>
-        <label class="product-line-price">Total</label>
-      </div>
-    
-      <div class="product">
-        <div class="product-image">
-          <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
-        </div>
-        <div class="product-details">
-          <div class="product-title">Dingo Dog Bones</div>
-          <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-        </div>
-        <div class="product-price">12.99</div>
-        <div class="product-quantity">
-          <input type="number" value="2" min="1">
-        </div>
-        <div class="product-quantity">
-            <input type="color">
-          </div>
-          <div class="product-quantity">
-            <input type="size">
-          </div>
-        <div class="product-removal">
-          <button class="remove-product">
-            Remove
-          </button>
-        </div>
-        <div class="product-line-price">25.98</div>
-      </div>
-    
-      <div class="product">
-        <div class="product-image">
-          <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
-        </div>
-        <div class="product-details">
-          <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-          <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-        </div>
-        <div class="product-price">45.99</div>
-        <div class="product-quantity">
-          <input type="number" value="1" min="1">
-        </div>
-        <div class="product-removal">
-          <button class="remove-product">
-            Remove
-          </button>
-        </div>
-        <div class="product-line-price">45.99</div>
-      </div>
-    
-      <div class="totals">
-        <div class="totals-item totals-item-total">
-          <label>Total</label>
-          <div class="totals-value" id="cart-total">00.00</div>
-        </div>
-      </div>
-          
-          <button class="checkout">Checkout</button>
-    
-    </div>
-</section>
 
 <footer>
     <div class="inner-footer">
         <div class="footer-items about">
             <h1>О нас</h1>
-            <p>Всевышний бит давал нам идеи для этих вещей. Эта одежда даёт +10 к стилю и +15 к зависти окружающих.</p>   
+            <p>Расписали, разложили по полочкам, разжевали. 
+              Конечно нет ничего идеального, но мы идем на компромиссы во многих нюансах. 
+              Будут вопросы или пожелания, ждем писем или звонков. Спасибо тем, кто дочитал 
+              (мы бы психанули еще в начале).</p>   
         </div>
         <div class="footer-items contacs">
             <h1>Контакты:</h1>
@@ -218,14 +146,82 @@
     </div>
 </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="../static/scripts/nav.js" type="text/javascript" ></script>
-<script src="../static/scripts/header.js" type="text/javascript"></script>
-<script src="../static/scripts/main.js" type="text/javascript"></script>
-<script src="../static/scripts/carousel.js"></script>
-<script src="../static/scripts/cart.js" async></script>
+<script src="{{url( 'static', filename='scripts/nav.js')}}" type="text/javascript" ></script>
+<script src="{{url( 'static', filename='scripts/header.js')}}" type="text/javascript"></script>
+<script src="{{url( 'static', filename='scripts/main.js')}}" type="text/javascript"></script>
+<script src="{{url( 'static', filename='scripts/carousel.js')}}"></script>
+<script src="{{url( 'static', filename='scripts/cart.js')}}" ></script>
+
+<script>  
+function fastCartFunction(id_clothes, price){
+  let name = document.querySelector(`[name="name-${id_clothes}"]`).value;
+  let phone = document.querySelector(`[name="phone-${id_clothes}"]`).value;
+  if(phone.search(/^[\+]?[0-9]{10,13}$/)==-1){
+    return;
+  }
+  $.ajax({
+    url: `{{ url ('create_fast_order') }}`,
+    type: "POST",
+    async: true,
+    data: {
+      'name': name,
+      'phone': phone,
+      'type_order': 1,
+      'id_clothes': id_clothes,
+      'price': price
+    },
+    success: function(req){
+      if(req.created){
+        //Спасибо за заказа, наш менеджер свяжется в скоре с вами 
+        let form = document.querySelector(`[name="name-${id_clothes}"]`).parentElement;
+        form.innerHTML = `<div class="complete-message message-${id_clothes}"><p>Спасибо за заказа, наш менеджер свяжется в скоре с вами. Наши соц.сети:<br> </p>
+          <a>Instagram</a><br><a>Facebooke</a></div>`
+      }
+    }
+  });
+}
+
+function cartFunction(){
+  let name = document.querySelector(`[name="name"]`).value;
+  let phone = document.querySelector(`[name="phone"]`).value;
+  let email = document.querySelector(`[name="email"]`).value;
+  let surname = document.querySelector(`[name="surname"]`).value;
+  let city = document.querySelector(`[name="phone"]`).value;
+  let address_novoi_poshti = document.querySelector(`[name="address_novoi_poshti"]`).value;
+  let price = document.getElementById('cart-total');
+  if(phone.search(/^[\+]?[0-9]{10,13}$/)==-1){
+    return;
+  }
+  if(email.search(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)==-1){
+    return;
+  }
+  $.ajax({
+    url: `{{ url ('crete_order_by_cart') }}`,
+    type: "POST",
+    async: true,
+    data: {
+      'order': {
+        'name': name,
+        'phone': phone,
+        'type_order': 1,
+        'price': price,
+        'address_novoi_poshti': address_novoi_poshti,
+        'city': city,
+        'surname': surname,
+        'email': email
+      }
+
+      
+    },
+    success: function(req){
+      console.log(req)
+    }
+  });
+}
+</script>
 </body>
 </html>
