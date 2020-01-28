@@ -53,7 +53,7 @@ class ClothesView(models.Model):
     price = models.FloatField(validators=[MinValueValidator(0),],null=False,blank=False)
     count = models.PositiveSmallIntegerField()
     #img = models.ForeignKey(Image,on_delete=models.CASCADE)
-    img = models.ImageField(upload_to = 'media/', verbose_name='Фотография одежды', null=False,blank=False)
+    img = models.URLField(verbose_name='Фотография одежды', null=False,blank=False)
     size = models.ManyToManyField(SizeClothes,related_name='clothes')
     color = models.ManyToManyField(ColorClothes,related_name='clothes')
 
