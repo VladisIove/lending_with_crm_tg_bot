@@ -19,7 +19,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
 multidict==4.7.4
-Pillow==7.0.0
+Pillow==8.2.0
 priority==1.3.0
 psycopg2-binary==2.8.4
 PyPika==0.35.20
